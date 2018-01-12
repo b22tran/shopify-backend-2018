@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 )
 
 func main() {
@@ -13,14 +12,6 @@ func main() {
 		getApiResponseByPage(i, &allMenus)
 	}
 	validResults, invalidResults := findCyclicAndNonCyclicMenus(&allMenus)
-	w := http.ResponseWriter
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(
-		map[string]interface{}{
-			"valid_menus":   validResults,
-			"invalid_menus": invalidResults,
-		},
-	)
 
 	fmt.Printf("%+v \n\n%v\n\n%v", *initApiResp, validResults, invalidResults)
 }
